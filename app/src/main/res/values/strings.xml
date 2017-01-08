@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NewJustBecause</string>
+    <string name="edit_message">Edit me my negro!</string>
+    <string name="button_send">Tell ya that!</string>
+    <string name="button_goat">Koza</string>
+    <string name="button_wild_boar">Dzik</string>
+    <string name="button_narwhal">Narwal Ziomeczek</string>
+    <string name="textview_choose_photo">Co Pan chcesz zobaczyć?</string>
+    <string name="button_turn_off_the_light">Zrób ciemno</string>
+    <string name="button_turn_on_the_light">Zrób jasno</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

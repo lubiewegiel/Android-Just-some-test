@@ -1,0 +1,70 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sth.newjustbecause.ImageViewFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/RelativeLayoutImageViewFragment">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutImageViewFragment">
+            <TextView android:id="@+id/textview_choose_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/textview_choose_photo"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:id="@+id/linearLayoutImageViewFragment2"
+            android:layout_below="@+id/linearLayoutImageViewFragment"
+            android:layout_alignEnd="@+id/linearLayoutImageViewFragment"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="0dp">
+            <Button android:id="@+id/button_goat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/button_goat"
+                android:onClick="showGoat"/>
+            <Button android:id="@+id/button_wild_boar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/button_wild_boar"
+                android:onClick="showWildBoar"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/button_narwhal"
+                android:onClick="showNarwhal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayoutImageViewFragment3"
+            android:layout_below="@+id/linearLayoutImageViewFragment2"
+            android:layout_alignEnd="@+id/linearLayoutImageViewFragment2"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="0dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxHeight="@dimen/activity_vertical_margin"
+            android:maxWidth="@dimen/activity_horizontal_margin"
+            android:id="@+id/imageView"
+            android:src="@mipmap/ic_launcher"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
