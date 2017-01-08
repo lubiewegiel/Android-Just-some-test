@@ -75,31 +75,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void turnOffTheLight(View view) {
-                String url1 = "http://url/api/devices/33/action/turnOff";
-        String charset = "UTF-8";
-
-        URL url = new URL(url1);
-
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-        try {
-
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setChunkedStreamingMode(0);
-            urlConnection.setDoOutput(true);
-
-            urlConnection.setRequestProperty("Accept-Charset", charset);
-            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            String input = "";
-
-
-            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            out.write(input.getBytes());
-
-
-        } finally {
-            urlConnection.disconnect();
-        }
+//                String url1 = "http://url/api/devices/33/action/turnOff";
+//        String charset = "UTF-8";
+//
+//        URL url = new URL(url1);
+//
+//        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//
+//        try {
+//
+//            urlConnection.setRequestMethod("POST");
+//            urlConnection.setChunkedStreamingMode(0);
+//            urlConnection.setDoOutput(true);
+//
+//            urlConnection.setRequestProperty("Accept-Charset", charset);
+//            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+//            String input = "";
+//
+//
+//            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+//            out.write(input.getBytes());
+//
+//
+//        } finally {
+//            urlConnection.disconnect();
+//        }
 
     }
 
