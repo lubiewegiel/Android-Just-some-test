@@ -4,27 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "Some text";
+    public  String BASE_URL = "http://192.168.0.138/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,32 +78,48 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void turnOffTheLight(View view) {
-//                String url1 = "http://url/api/devices/33/action/turnOff";
-//        String charset = "UTF-8";
-//
-//        URL url = new URL(url1);
-//
-//        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//
-//        try {
-//
-//            urlConnection.setRequestMethod("POST");
-//            urlConnection.setChunkedStreamingMode(0);
-//            urlConnection.setDoOutput(true);
-//
-//            urlConnection.setRequestProperty("Accept-Charset", charset);
-//            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-//            String input = "";
-//
-//
-//            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-//            out.write(input.getBytes());
-//
-//
-//        } finally {
-//            urlConnection.disconnect();
-//        }
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
+        HCEndpointInterface apiService = retrofit.create(HCEndpointInterface.class);
 
+        Call<RequestBody> call = apiService.turnOffDimmer();
+
+        changeLight(call);
+
+    }
+
+    public void turnOnTheLight(View view) {
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").create();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
+        HCEndpointInterface apiService = retrofit.create(HCEndpointInterface.class);
+
+        Call<RequestBody> call = apiService.turnOnDimmer();
+
+        changeLight(call);
+
+    }
+
+    public void changeLight(Call<RequestBody> call) {
+        call.enqueue(new Callback<RequestBody>() {
+            @Override
+            public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
+                int statusCode = response.code();
+                StringBuilder str = new StringBuilder();
+                str.append("");
+                str.append(statusCode);
+                String rc = str.toString();
+                Log.v("Response code: ", rc);
+            }
+
+            @Override
+            public void onFailure(Call<RequestBody> call, Throwable t) {
+
+                Log.v("Turn off the light", "failure" + t);
+
+            }
+        });
     }
 
     public void showToast (String message) {
